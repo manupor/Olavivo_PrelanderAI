@@ -70,7 +70,7 @@ export default function Home() {
             </div>
             <h3 className="text-xl font-semibold mb-2">Brand Color Extraction</h3>
             <p className="text-gray-600">
-              Upload your logo and we'll automatically extract your brand colors for perfect consistency.
+              Upload your logo and we&apos;ll automatically extract your brand colors for perfect consistency.
             </p>
           </div>
           <div className="text-center">

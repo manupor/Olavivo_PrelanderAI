@@ -29,8 +29,8 @@ export default function SiteDetailPage({ params }: SiteDetailPageProps) {
         const result = await response.json()
         setSite(result.data)
       }
-    } catch (error) {
-      console.error('Failed to fetch site:', error)
+    } catch {
+      console.error('Error fetching site:')
     } finally {
       setLoading(false)
     }

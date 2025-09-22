@@ -12,7 +12,7 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
-  const router = useRouter()
+  // const router = useRouter()
   const supabase = createClient()
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -43,7 +43,7 @@ export default function SignupPage() {
       } else {
         setSuccess(true)
       }
-    } catch (err) {
+    } catch {
       setError('An unexpected error occurred')
     } finally {
       setLoading(false)
@@ -63,7 +63,7 @@ export default function SignupPage() {
               </div>
               <h2 className="mt-6 text-2xl font-bold text-gray-900">Check your email</h2>
               <p className="mt-2 text-sm text-gray-600">
-                We've sent you a confirmation link at <strong>{email}</strong>
+                We&apos;ve sent you a confirmation link at <strong>{email}</strong>
               </p>
               <div className="mt-6">
                 <Link
@@ -89,13 +89,7 @@ export default function SignupPage() {
             Create your account
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            Or{' '}
-            <Link
-              href="/login"
-              className="font-medium text-blue-600 hover:text-blue-500"
-            >
-              sign in to your existing account
-            </Link>
+            Already have an account? <Link href="/login" className="text-blue-600 hover:underline">Sign in</Link>
           </p>
         </div>
       </div>

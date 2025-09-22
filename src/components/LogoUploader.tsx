@@ -37,7 +37,7 @@ export function LogoUploader({ onUpload, currentUrl }: LogoUploaderProps) {
       } else {
         setError(result.error || 'Upload failed')
       }
-    } catch (err) {
+    } catch {
       setError('Upload failed')
     } finally {
       setUploading(false)
@@ -54,6 +54,36 @@ export function LogoUploader({ onUpload, currentUrl }: LogoUploaderProps) {
     maxSize: 2 * 1024 * 1024, // 2MB
     multiple: false,
   })
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    setError('')
+
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+
+      const response = await fetch('/api/upload-logo', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        onUpload(result.data.url)
+      } else {
+        setError(result.error || 'Upload failed')
+      }
+    } catch {
+      setError('Upload failed')
+    } finally {
+      setUploading(false)
+    }
+  }
 
   const handleUrlSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -150,7 +180,7 @@ export function LogoUploader({ onUpload, currentUrl }: LogoUploaderProps) {
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault()
-              handleUrlSubmit(e as any)
+              handleUrlSubmit(e as React.FormEvent)
             }
           }}
         />

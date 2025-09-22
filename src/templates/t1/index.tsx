@@ -70,7 +70,7 @@ export function Template1({ brand }: Template1Props) {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Reliable</h3>
-              <p className="text-gray-600">Trusted by thousands of customers worldwide</p>
+              <p className="text-lg text-gray-600 mb-8">&ldquo;Transform your business with our cutting-edge solutions&rdquo;</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-[var(--brand-accent)] rounded-lg mx-auto mb-4 flex items-center justify-center">
@@ -98,7 +98,7 @@ export function Template1({ brand }: Template1Props) {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <blockquote className="text-2xl font-medium text-gray-900 mb-6">
-            "{brand.brandName} transformed our business. Highly recommended!"
+            &ldquo;{brand.brandName} transformed our business. Highly recommended!&rdquo;
           </blockquote>
           <div className="flex items-center justify-center">
             <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>

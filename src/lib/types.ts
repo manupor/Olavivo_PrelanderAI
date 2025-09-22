@@ -63,6 +63,7 @@ export interface BrandConfig {
 export interface TemplateRenderResult {
   html: string
   css: string
+  data?: Record<string, unknown>
 }
 
 // Zod schemas for validation
@@ -99,7 +100,7 @@ export type OpenAIResponse = z.infer<typeof OpenAIResponseSchema>
 export type ColorPalette = z.infer<typeof ColorPaletteSchema>
 
 // API response types
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = Record<string, unknown>> {
   success: boolean
   data?: T
   error?: string
@@ -113,6 +114,10 @@ export interface SiteGenerationResponse {
 // Template types
 export interface TemplateProps {
   brand: BrandConfig
+}
+
+export interface TemplateRenderer {
+  (brand: BrandConfig): string
 }
 
 export interface TemplateDefinition {
