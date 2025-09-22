@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { ConfigurationNotice } from '@/components/ConfigurationNotice'
 
 export default function SignupPage() {
   const [email, setEmail] = useState('')
@@ -19,6 +20,14 @@ export default function SignupPage() {
     e.preventDefault()
     setLoading(true)
     setError('')
+
+    // Check if Supabase is properly configured
+    if (process.env.NEXT_PUBLIC_SUPABASE_URL === 'https://placeholder.supabase.co' || 
+        !process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      setError('Authentication service is not configured. Please contact support.')
+      setLoading(false)
+      return
+    }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match')
@@ -44,7 +53,7 @@ export default function SignupPage() {
         setSuccess(true)
       }
     } catch {
-      setError('An unexpected error occurred')
+      setError('Authentication service is temporarily unavailable. Please try again later.')
     } finally {
       setLoading(false)
     }
@@ -96,6 +105,7 @@ export default function SignupPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <ConfigurationNotice />
           <form className="space-y-6" onSubmit={handleSignup}>
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
