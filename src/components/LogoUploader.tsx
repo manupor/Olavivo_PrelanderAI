@@ -97,15 +97,22 @@ export function LogoUploader({ onUpload, currentUrl }: LogoUploaderProps) {
     <div className="space-y-4">
       {/* Current Logo Preview */}
       {currentUrl && (
-        <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-          <img
-            src={currentUrl}
-            alt="Current logo"
-            className="w-16 h-16 object-contain bg-white rounded border"
-          />
-          <div>
-            <p className="text-sm font-medium">Current logo</p>
-            <p className="text-xs text-gray-500">Upload a new one to replace</p>
+        <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 shadow-sm">
+          <div className="relative">
+            <img
+              src={currentUrl}
+              alt="Current logo"
+              className="w-16 h-16 object-contain bg-white rounded-lg border-2 border-white shadow-md"
+            />
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+              <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-semibold text-gray-800">✅ Logo uploaded successfully</p>
+            <p className="text-xs text-gray-600">Upload a new one to replace the current logo</p>
           </div>
         </div>
       )}
@@ -113,50 +120,78 @@ export function LogoUploader({ onUpload, currentUrl }: LogoUploaderProps) {
       {/* Upload Area */}
       <div
         {...getRootProps()}
-        className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+        className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-300 ${
           isDragActive
-            ? 'border-blue-400 bg-blue-50'
-            : 'border-gray-300 hover:border-gray-400'
+            ? 'border-blue-500 bg-blue-50 scale-105 shadow-lg'
+            : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50 hover:shadow-md'
         }`}
       >
         <input {...getInputProps()} />
-        <div className="space-y-2">
-          <svg
-            className="mx-auto h-12 w-12 text-gray-400"
-            stroke="currentColor"
-            fill="none"
-            viewBox="0 0 48 48"
-          >
-            <path
-              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        <div className="space-y-3">
+          <div className={`mx-auto w-16 h-16 rounded-full flex items-center justify-center transition-colors ${
+            isDragActive ? 'bg-blue-100' : 'bg-gray-100'
+          }`}>
+            <svg
+              className={`h-8 w-8 transition-colors ${
+                isDragActive ? 'text-blue-600' : 'text-gray-400'
+              }`}
+              stroke="currentColor"
+              fill="none"
+              viewBox="0 0 48 48"
+            >
+              <path
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
           <div>
-            <p className="text-sm text-gray-600">
+            <p className={`text-sm font-medium transition-colors ${
+              isDragActive ? 'text-blue-700' : 'text-gray-700'
+            }`}>
               {isDragActive
-                ? 'Drop your logo here'
-                : 'Drag & drop your logo, or click to browse'}
+                ? '🎯 Drop your logo here!'
+                : '📁 Drag & drop your logo, or click to browse'}
             </p>
-            <p className="text-xs text-gray-500">PNG, SVG, JPEG up to 2MB</p>
+            <p className="text-xs text-gray-500 mt-1">
+              📏 PNG, SVG, JPEG up to 2MB • Perfect for your prelander
+            </p>
           </div>
         </div>
       </div>
 
       {uploading && (
-        <div className="text-center py-4">
-          <div className="inline-flex items-center space-x-2">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-            <span className="text-sm text-gray-600">Uploading...</span>
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-4">
+          <div className="flex items-center justify-center space-x-3">
+            <div className="relative">
+              <div className="animate-spin rounded-full h-6 w-6 border-2 border-blue-600 border-t-transparent"></div>
+              <div className="absolute inset-0 rounded-full border-2 border-blue-200"></div>
+            </div>
+            <div className="text-center">
+              <p className="text-sm font-medium text-blue-800">🚀 Uploading your logo...</p>
+              <p className="text-xs text-blue-600">This will only take a moment</p>
+            </div>
           </div>
         </div>
       )}
 
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
-          {error}
+        <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-4">
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                <svg className="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-red-800">❌ Upload failed</p>
+              <p className="text-xs text-red-600">{error}</p>
+            </div>
+          </div>
         </div>
       )}
 
