@@ -6,13 +6,13 @@ The following environment variables must be configured in your deployment platfo
 
 ### Required Variables
 ```
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ### Optional Variables
 ```
-OPENAI_API_KEY
+OPENAI_API_KEY=your_openai_api_key
 ```
 
 ## Setup Instructions
