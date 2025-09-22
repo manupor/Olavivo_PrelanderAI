@@ -4,9 +4,10 @@ import { Template3, renderTemplate as renderT3 } from './t3'
 import { Template4, renderTemplate as renderT4 } from './t4'
 import { Template5, renderTemplate as renderT5 } from './t5'
 import { Template6, renderTemplate as renderT6 } from './t6'
+import { Template7, renderTemplate as renderT7 } from './t7'
 import { TemplateDefinition } from '@/lib/types'
 
-export const templates: Record<'t1' | 't2' | 't3' | 't4' | 't5' | 't6', TemplateDefinition> = {
+export const templates: Record<'t1' | 't2' | 't3' | 't4' | 't5' | 't6' | 't7', TemplateDefinition> = {
   t1: {
     id: 't1',
     name: 'Minimal SaaS',
@@ -55,7 +56,29 @@ export const templates: Record<'t1' | 't2' | 't3' | 't4' | 't5' | 't6', Template
     component: Template6,
     renderTemplate: renderT6,
   },
+  t7: {
+    id: 't7',
+    name: 'Bonanza Billion',
+    description: 'Premium 3x3 slot machine with jackpot features and animated bonanza theme',
+    preview: '/templates/t7-preview.svg',
+    component: Template7,
+    renderTemplate: renderT7,
+  },
 }
 
-export { Template1, Template2, Template3, Template4, Template5, Template6 }
-export { renderT1, renderT2, renderT3, renderT4, renderT5, renderT6 }
+export { 
+  Template1, 
+  Template2, 
+  Template3, 
+  Template4, 
+  Template5, 
+  Template6, 
+  Template7, 
+  renderT1, 
+  renderT2, 
+  renderT3, 
+  renderT4, 
+  renderT5, 
+  renderT6, 
+  renderT7 
+}

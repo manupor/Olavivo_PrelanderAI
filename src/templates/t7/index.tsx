@@ -182,11 +182,14 @@ export function Template7({ brand }: TemplateProps) {
         {/* Brand Logo */}
         {logoUrl && (
           <div className="mb-6">
-            <img 
-              src={logoUrl} 
-              alt={brandName}
-              className="h-16 w-auto mx-auto drop-shadow-2xl"
-            />
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 inline-block border border-yellow-400/30 shadow-2xl">
+              <img 
+                src={logoUrl} 
+                alt={brandName}
+                className="h-16 w-auto mx-auto drop-shadow-2xl"
+                style={{ maxWidth: '200px' }}
+              />
+            </div>
           </div>
         )}
         

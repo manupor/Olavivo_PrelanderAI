@@ -131,6 +131,18 @@ export function renderTemplate(brand: BrandConfig): { html: string; css: string 
 
         <!-- Header -->
         <div style="position: relative; z-index: 10; text-align: center; padding: 2rem 0;">
+          ${logoUrl ? `
+          <!-- Brand Logo -->
+          <div style="margin-bottom: 1.5rem;">
+            <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px); border-radius: 1rem; padding: 1rem; display: inline-block; border: 1px solid rgba(250, 204, 21, 0.3); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);">
+              <img 
+                src="${logoUrl}" 
+                alt="${brandName}"
+                style="height: 4rem; width: auto; max-width: 200px; display: block; filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15));"
+              />
+            </div>
+          </div>
+          ` : ''}
           <h1 style="font-size: 3rem; font-weight: 900; color: #facc15; margin-bottom: 1.5rem; text-shadow: 0 0 1px #ffd700, 0 0 2px #ffd700, 0 1px 0 rgba(0,0,0,0.3);">
             💎 ${brandName.toUpperCase()} 💎
           </h1>
