@@ -179,6 +179,17 @@ export function Template7({ brand }: TemplateProps) {
 
       {/* Header */}
       <div className="relative z-10 text-center py-8">
+        {/* Brand Logo */}
+        {logoUrl && (
+          <div className="mb-6">
+            <img 
+              src={logoUrl} 
+              alt={brandName}
+              className="h-16 w-auto mx-auto drop-shadow-2xl"
+            />
+          </div>
+        )}
+        
         <h1 className="text-5xl font-black text-yellow-400 flex items-center justify-center gap-3 neon-text-yellow mb-6 drop-shadow-2xl">
           <span className="text-6xl">💎</span>
           BONANZA BILLION
@@ -195,18 +206,19 @@ export function Template7({ brand }: TemplateProps) {
       <main className="relative z-10 px-4 py-8 flex justify-center gap-8 max-w-6xl mx-auto">
         
         {/* Slot Machine Container */}
-        <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-3xl p-6 border-4 border-yellow-400 shadow-2xl">
+        <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-3xl p-6 shadow-2xl" style={{ borderWidth: '4px', borderStyle: 'solid', borderColor: colors.primary || '#fbbf24' }}>
           <div className="text-center mb-6">
             <h2 className="text-2xl font-black text-yellow-400 mb-1">BONANZA BILLION</h2>
             <h3 className="text-xl font-bold text-yellow-400">SLOTS</h3>
           </div>
 
           {/* 3x3 Slot Grid */}
-          <div className="grid grid-cols-3 gap-2 bg-slate-800 p-4 rounded-xl">
+          <div className="grid grid-cols-3 gap-2 bg-slate-800 p-4 rounded-xl" style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: colors.secondary || '#06b6d4' }}>
             {reels.map((symbol, index) => (
               <div 
                 key={index}
                 className={`w-20 h-20 bg-gradient-to-b from-orange-400 to-yellow-500 rounded-xl flex items-center justify-center text-3xl shadow-lg transition-all duration-100 ${spinning ? 'animate-pulse' : ''}`}
+                style={{ borderWidth: '1px', borderStyle: 'solid', borderColor: colors.accent || '#f59e0b' }}
               >
                 {symbol}
               </div>
@@ -215,24 +227,30 @@ export function Template7({ brand }: TemplateProps) {
         </div>
 
         {/* Game Controls Panel */}
-        <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-3xl p-6 border-4 border-yellow-400 shadow-2xl min-w-[280px]">
+        <div className="bg-gradient-to-b from-slate-800 to-slate-900 rounded-3xl p-6 shadow-2xl min-w-[280px]" style={{ borderWidth: '4px', borderStyle: 'solid', borderColor: colors.primary || '#fbbf24' }}>
           <div className="text-center mb-6">
             <h2 className="text-2xl font-black text-yellow-400">GAME CONTROLS</h2>
           </div>
 
           {/* Bet Display */}
-          <div className="bg-slate-700/80 rounded-xl p-4 mb-4 border-2 border-slate-600 shadow-lg">
+          <div className="bg-slate-700/80 rounded-xl p-4 mb-4 shadow-lg" style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: colors.secondary || '#06b6d4' }}>
             <div className="text-yellow-400 font-bold text-center text-lg">BET: $10</div>
           </div>
 
           {/* Balance Display */}
-          <div className="bg-slate-700/80 rounded-xl p-4 mb-6 border-2 border-slate-600 shadow-lg">
+          <div className="bg-slate-700/80 rounded-xl p-4 mb-6 shadow-lg" style={{ borderWidth: '2px', borderStyle: 'solid', borderColor: colors.secondary || '#06b6d4' }}>
             <div className="text-yellow-400 font-bold text-center text-lg">BALANCE: $1,000</div>
           </div>
 
           {/* Spin Button */}
           <button 
-            className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-black text-xl py-4 rounded-full shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50"
+            className="w-full text-white font-black text-xl py-4 rounded-full shadow-xl transform hover:scale-105 transition-all duration-200 disabled:opacity-50"
+            style={{ 
+              background: `linear-gradient(to right, ${colors.primary || '#f97316'}, ${colors.accent || '#f59e0b'})`,
+              borderWidth: '2px',
+              borderStyle: 'solid',
+              borderColor: colors.secondary || '#06b6d4'
+            }}
             onClick={spinReels}
             disabled={spinning}
           >
