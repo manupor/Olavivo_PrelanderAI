@@ -1,9 +1,10 @@
 import OpenAI from 'openai'
 import { OpenAIResponseSchema, type OpenAIResponse } from './types'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY!,
-})
+// Initialize OpenAI only if API key is available
+const openai = process.env.OPENAI_API_KEY ? new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+}) : null
 
 export async function generateMarketingCopy({
   brandName,
@@ -15,6 +16,11 @@ export async function generateMarketingCopy({
   description?: string
 }): Promise<OpenAIResponse> {
   try {
+    // If no OpenAI API key, skip to fallback
+    if (!openai) {
+      throw new Error('OpenAI API key not available')
+    }
+
     const systemPrompt = `You are a senior conversion copywriter. Output concise, high-converting copy in JSON, strictly following the schema. Focus on creating compelling headlines that drive action.`
 
     const userPrompt = `Create marketing copy for:
