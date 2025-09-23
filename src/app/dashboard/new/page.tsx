@@ -12,42 +12,6 @@ import { Button } from '@/components/ui/button'
 
 const templateList = [
   {
-    id: 't1' as const,
-    name: 'Minimal SaaS',
-    description: 'Clean, professional design perfect for SaaS and tech companies',
-    preview: '/templates/t1-preview.svg'
-  },
-  {
-    id: 't2' as const,
-    name: 'Bold Marketing',
-    description: 'Eye-catching design with strong visual impact for marketing campaigns',
-    preview: '/templates/t2-preview.svg'
-  },
-  {
-    id: 't3' as const,
-    name: 'Lead Generation',
-    description: 'Conversion-focused design with prominent forms and CTAs',
-    preview: '/templates/t3-preview.svg'
-  },
-  {
-    id: 't4' as const,
-    name: 'Casino Gaming',
-    description: 'High-energy casino design with vibrant colors and gaming elements',
-    preview: '/templates/t4-preview.svg'
-  },
-  {
-    id: 't5' as const,
-    name: 'iGaming Casino',
-    description: 'Interactive casino slot machine with animated elements and gaming features',
-    preview: '/templates/t5-preview.svg'
-  },
-  {
-    id: 't6' as const,
-    name: 'Olavivo Casino Slots',
-    description: 'Interactive 3-line slot machine with animated symbols and casino atmosphere',
-    preview: '/templates/t6-preview.svg'
-  },
-  {
     id: 't7' as const,
     name: 'Bonanza Billion',
     description: 'Premium slot machine template with interactive reels, jackpot animations, and billion-dollar theme',
@@ -57,7 +21,7 @@ const templateList = [
 
 export default function NewSitePage() {
   const [step, setStep] = useState(1)
-  const [selectedTemplate, setSelectedTemplate] = useState<TemplateId>('t1')
+  const [selectedTemplate, setSelectedTemplate] = useState<TemplateId>('t7')
   const [logoUrl, setLogoUrl] = useState<string>('')
   const [generating, setGenerating] = useState(false)
   const [previewTemplate, setPreviewTemplate] = useState<TemplateId | null>(null)
@@ -73,7 +37,7 @@ export default function NewSitePage() {
   } = useForm<CreateSiteFormData>({
     resolver: zodResolver(CreateSiteSchema),
     defaultValues: {
-      templateId: 't1'
+      templateId: 't7'
     }
   })
 
