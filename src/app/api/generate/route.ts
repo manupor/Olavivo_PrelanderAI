@@ -4,9 +4,21 @@ import { CreateSiteSchema } from '@/lib/types'
 import { generateMarketingCopy } from '@/lib/openai'
 import { extractColorsFromImage } from '@/lib/colors'
 import { generateSlug } from '@/lib/utils'
+import { renderTemplate as renderT1 } from '@/templates/t1'
+import { renderTemplate as renderT2 } from '@/templates/t2'
+import { renderTemplate as renderT3 } from '@/templates/t3'
+import { renderTemplate as renderT4 } from '@/templates/t4'
+import { renderTemplate as renderT5 } from '@/templates/t5'
+import { renderTemplate as renderT6 } from '@/templates/t6'
 import { renderTemplate as renderT7 } from '@/templates/t7/server'
 
 const templateRenderers = {
+  t1: renderT1,
+  t2: renderT2,
+  t3: renderT3,
+  t4: renderT4,
+  t5: renderT5,
+  t6: renderT6,
   t7: renderT7,
 }
 
@@ -97,22 +109,15 @@ export async function POST(request: NextRequest) {
       ctaUrl: validatedData.ctaUrl,
     }
 
-    // Render template - only t7 is supported for now
-    if (validatedData.templateId !== 't7') {
-      return NextResponse.json(
-        { success: false, error: 'Only Bonanza template (t7) is currently supported' },
-        { status: 400 }
-      )
-    }
-    
+    // Render template based on selected templateId
     const renderer = templateRenderers[validatedData.templateId]
     const { html, css } = renderer(brandConfig)
 
     // Generate unique slug
     const slug = generateSlug(validatedData.brandName)
 
-    // Save to database - map t7 to t6 for constraint compatibility but use t7 renderer
-    const dbTemplateId = validatedData.templateId === 't7' ? 't6' : validatedData.templateId;
+    // Save to database - map t7 to t6 for legacy constraint compatibility but use t7 renderer
+    const dbTemplateId = validatedData.templateId === 't7' ? 't6' : validatedData.templateId
     
     const { data: site, error: siteError } = await supabase
       .from('sites')
